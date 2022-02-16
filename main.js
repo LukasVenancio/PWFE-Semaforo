@@ -41,10 +41,19 @@ const ligarVermelho = () =>{
 }
 
 const desligar = () =>{
-    if(!semaforoDesligado())
+    if(!semaforoDesligado()){
         semaforo.src = './img/desligado.png'
-    else
-        semaforo.src = './img/verde.png'       
+        automatico.disabled = true
+        verde.disabled = true
+        amarelo.disabled = true
+        vermelho.disabled = true
+    }else{
+        semaforo.src = './img/verde.png'
+        automatico.disabled = false
+        verde.disabled = false
+        amarelo.disabled = false
+        vermelho.disabled = false
+    }
 }
 
 const alternarCores = () => {
@@ -60,11 +69,17 @@ const ligarAutomatico = () =>{
     if(idAutomatico == null){
         idAutomatico = setInterval(alternarCores, 1000)
         automatico.textContent = 'Parar'
+        verde.disabled = true
+        amarelo.disabled = true
+        vermelho.disabled = true
 
     }else{
         clearInterval(idAutomatico)
         automatico.textContent = 'Automático'
         idAutomatico = null
+        verde.disabled = false
+        amarelo.disabled = false
+        vermelho.disabled = false
     }
     
 }
